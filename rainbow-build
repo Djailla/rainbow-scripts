@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Select the architecuture to build :"
+
+select arch in x86_64 armv7 armv5;
+do
+    ARCH=$arch
+    break
+done
+
+echo "$ARCH selected"
+echo ""
+
+BUILD_DIR=/home/rainbow/build/
+rainbow --clean . --arch $ARCH --build-dir $BUILD_DIR
+rainbow --build . --arch $ARCH --build-dir $BUILD_DIR
+rainbow --pack . --arch $ARCH --build-dir $BUILD_DIR
+
+echo ""
+echo "######################"
+echo "### Build complete ###"
+echo "######################"
+exit 1
